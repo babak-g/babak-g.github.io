@@ -11,58 +11,38 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 
 const cactusTech: Array<{ title: string; desc: string; href: string }> = [
 	{
-		title: "Astro",
-		desc: "Build fast websites, faster.",
+		title: "The Obesity Code",
+		desc: "Jason Fung, MD",
 		href: "https://astro.build",
 	},
 	{
-		title: "Astro Assets",
-		desc: "Built-in optimized asset support.",
+		title: "Why Startups Fail",
+		desc: "Tom Eisenmann",
 		href: "https://docs.astro.build/en/guides/assets/",
 	},
 	{
-		title: "Tailwind CSS",
-		desc: "Rapidly build modern websites without ever leaving your HTML.",
+		title: "Nonviolent Communication",
+		desc: "Marshall B. Rosenberg [current]",
 		href: "https://tailwindcss.com",
 	},
 	{
-		title: "Markdown",
-		desc: "Simple and easy-to-use markup language.",
+		title: "How to Win Friends & Influence People",
+		desc: "Dale Carnegie [next]",
 		href: "https://www.markdownguide.org/",
-	},
-	{
-		title: "MDX",
-		desc: "Markdown for the component era.",
-		href: "https://mdxjs.com/",
-	},
-	{
-		title: "Satori",
-		desc: "Generating png Open Graph images for blog posts.",
-		href: "https://github.com/vercel/satori",
-	},
-	{
-		title: "Pagefind",
-		desc: "A fully static search library.",
-		href: "https://pagefind.app/",
-	},
-	{
-		title: "Astro Icon",
-		desc: "An easy to use Icon component for Astro.",
-		href: "https://github.com/natemoo-re/astro-icon#readme",
 	},
 ];
 ---
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-6">hi</h1>
+		<h1 class="title mb-6">me</h1>
 		<p class="mb-4">
 			software engineer based in los angeles, united states.
 		</p>
 		<SocialList />
 	</section>
 	<section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-xl">Posts</h2>
+		<h2 class="title mb-4 text-xl">posts</h2>
 		<ul class="space-y-4 sm:space-y-2">
 			{
 				allPostsByDate.map((p) => (
@@ -74,7 +54,7 @@ const cactusTech: Array<{ title: string; desc: string; href: string }> = [
 		</ul>
 	</section>
 	<section class="mt-16">
-		<h2 class="title mb-4 text-xl">Technologies</h2>
+		<h2 class="title mb-4 text-xl">books</h2>
 		<ul class="space-y-4 sm:space-y-2">
 			{
 				cactusTech.map(({ href, title, desc }) => (

@@ -11,6 +11,7 @@ export default defineConfig({
 	// ! Please remember to replace the following site property with your own domain
 	site: "https://babak-g.github.io",
 	markdown: {
+		//@ts-expect-error
 		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
 		remarkRehype: { footnoteLabelProperties: { className: [""] } },
 		shikiConfig: {

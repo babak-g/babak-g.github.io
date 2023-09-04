@@ -1,15 +1,15 @@
 ---
 title: "Mid Design Interview"
-publishDate: "02 August 2023"
-description: "I'm just not having a good time. My experience with a recent on-site interview."
+publishDate: "02 September 2023"
+description: ""
 tags: ["interview", "blog"]
 ---
 
 Yesterday, I was fortunate enough to be given the opportunity to dust off the cobwebs and partake in a final-round design interview! For those unfamiliar with software engineering interviews, these are typically hour-long discussions where an interviewer asks the SWE candidate to design some random software system. Examples of questions could be anywhere from designing:
 
-Facebook Messenger
-Dropbox
-Tinder
+- Facebook Messenger
+- Dropbox
+- Tinder
 
 tldr: A large variety of topics can be asked and this may sound daunting since the question bank of designs is limitless, BUT these interviews are generally aimed to understand a candidate's thought process & reasoning by seeing how they trade-off solutions [or so I thought]. The interview should be less about how accurate a candidate can design Netflix, but rather why they chose certain design pieces over others. The rationale here is that some mid-level or even super-senior engineers can be really smart, but coming up with a full e2e system that can generate millions of dollars would be unreasonable. And if the candidate would be able to do that, then they probably shouldn't be interviewing in the first place.
 
@@ -22,13 +22,13 @@ How, you may ask?
 
 Well, let me tell you. This was a Zoom interview, the interview suggested to write on his notepad on his laptop to take notes. I have a strong preference of doing these interviews in-person over a whiteboard, but we gotta work with what we have. I start the design as many would with these kind of interviews, by:
 
-Asking Questions
+1. Asking Questions
 It is very important to define the functional requirements and what you're building before deep diving into a solution.
 
-Defining API methods
+2. Defining API methods
 What calls are being made to application servers? Details on parameters and return types.
 
-REST vs. gRPC
+## REST vs. gRPC
 After completing step (2), the interview goes, "So, what kind of API are you going to use?". *internal thought* I may have skipped over that trade-off decision while studying, so your boy had to actually use engineering skills to rawdog an answer off the dome. I don't have that much knowledge about various types of APIs and which was better than another, but I somehow wedged this as my answer:
 
 "We can consider a REST or gRPC API. Evaluating the trade-offs between the two, I know that REST passes JSON payloads to the API, which has readability benefits over gRPC, but a con is that passing JSON over-the-wire is larger than what gRPC would pass. The JSON payload wouldn't have that much data stored, since it's mainly the url and maybe some user stats & timestamps, so it wouldn't be significant, but the fact that gRPC passes serialized protocol buffers that only pass the data and corresponding field number [no field name] seems to be advantageous, since I don't think readability of JSON is more desirable than minimal latency improvements."
@@ -36,7 +36,7 @@ Boy, was I wrong with that answer. Interviewer immediately goes, "Do you know ho
 
 Well, so much for seeing how the candidate provides different solutions and their decision-making process. The interviewer obviously knows a lot more about this area of the design than I do, but I thought maybe talking out my reasoning would be enough for them to see how I think, but it felt like I failed the interview at this point, which I don't think is the purpose of design interviews. If I were interviewing the candidate, I would maybe ask if bootstrapping/implementation should be considered in the decision process. If the candidate is unaware, using this as a learning opportunity I think would be more beneficial than pointing out incorrectness, but that's just my opinion.
 
-Hashing
+## Hashing
 This is where I really got fucked. Fast forward, we start talking about the use-case when a user asks TinyUrl to shorten a URL that has already been shortened. There's really only two options here:
 
 Check storage to see if the original url has been written
@@ -55,7 +55,7 @@ Truncating and taking the first 48 bits if we only wanted to use alphanumeric wo
 
 After these LONG last minutes, the interview ends. Super awkward. I bascially apologize to this grown adult for being so inferior-minded and this interviewer gave such an get-out-of-my-face aura. I could genuinely feel the mood shift after how poorly this interview went.
 
-My Interview Feedback
+## My Interview Feedback
 I think my interviewer was very nice, but I also think all humans are innately good people, so this comment shouldn't mean much. I will say design interviews are a great place to put yourself out there and they do teach you a lot. I think these interviews can vary greatly depending on the interviewer. I will say that if I ever conducted these interviews, I would try my best to make it a non-judgemental space. I want to see the candidate make decisions they don't know the answer to and see how they make data-driven decisions. I think similarly with coding interviews, asking questions that require strong specific knowledge of implementation; such as Djisktra's or Union-Find or SHA-256, don't seem that valuable to me. It'd be a great if the candidate did know about them, but I don't think these are places to dock the candidate because these are all questions are very easily search-able. Give me a beer in one hand and a Chat-GPT in the other and I could answer all those questions to your desire. Asking the candidate whether they would use a relational vs. non-relational datastore or where bottlenecks are currently in the design or even places where we can introduce latency improvements (i.e caching mechanism) would be far greater indicator of hiring vs. non-hiring a candidate.
 
 FWIW, if I were interviewing myself, I would 110% give myself a strong no-hire. Us, humans, really are self-critical.
