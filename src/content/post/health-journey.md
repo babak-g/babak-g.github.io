@@ -43,7 +43,7 @@ Rather than look good to look good, I started researching what things worked for
 
 Growing up eating so much sugar and finishing everything on my plate ingrained interesting habits. These habits aren't bad, but they did cause me to feel not how I wanted to, so I sought for a change. I can't stress enough that listening to my body and making data-driven decisions [I know corp-speak cringe] to reach my goals were quintessential. 
 
-But what was my goal? Someone asked me this at work one day and I felt angry. I said I wanted to be strong, and then immediately after they said if I wanted to look good, they could "put me on". This was the day where I decided I hated this health goal question. I learned from exchange that rather than chasing quantifiables, I wanted to chase being in the best state I could be in.
+But what was my "health" goal? Someone asked me this at work one day and I felt angry. I said I wanted to be strong, and then immediately after they said if I wanted to look good, they could "put me on". This was the day where I decided I hated this health goal question. I learned from exchange that rather than chasing quantifiables, I wanted to chase being in the best state I could be in.
 
 I've tried so many diets to find the answer: Keto, Carnivore, Mediterranean, Intermittent fasting, etc. But I genuinely think tailoring myself to these 3 things:
 
