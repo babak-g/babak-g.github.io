@@ -1,7 +1,7 @@
 ---
 title: "Mid Design Interview"
 publishDate: "02 September 2023"
-description: ""
+description: "Dusting off the interview cobwebs"
 tags: ["interview", "blog"]
 ---
 

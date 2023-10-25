@@ -1,7 +1,7 @@
 ---
 title: "Ideal City"
 publishDate: "30 September 2023"
-description: ""
+description: "How to find the next move?"
 tags: ["living", "blog"]
 ---
 

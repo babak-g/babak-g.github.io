@@ -1,7 +1,7 @@
 ---
 title: "Health Journey"
 publishDate: "04 September 2023"
-description: ""
+description: "I'm a health n00b"
 tags: ["health", "blog"]
 ---
 
