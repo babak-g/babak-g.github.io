@@ -23,26 +23,26 @@ One of the books I read recently mentioned that comparisons are judgement. The m
 
 That's how I will present this ranking and it is truly my opinion of what I like when I want Nick's. Take that as you will.
 
-## Time of the ranking
+## Time for the ranking
 
 I don't like lists that require pages and pages of clicking to see the full list for maximizing the site owner's ad revenue, so let's keep it short and sweet.
 
-Peanöt Karamell Krunch
-Triple Choklad
-Swedish Apple Pie
-Rocky Fjord
-Campfire S’mörgs
-Peanöt Choklad Cup
-Swedish Munchies
-Chokladchip Dough
-Mint Chokladchip
-Sälta Karamell
-Strawbär Swirl
-Raspbär Swirl
-Swedish Choklad
-Birthdäg Cake
-Swedish Vanilj
-Cookies and Kräm
+- Peanöt Karamell Krunch
+- Triple Choklad
+- Swedish Apple Pie
+- Rocky Fjord
+- Campfire S’mörgs
+- Peanöt Choklad Cup
+- Swedish Munchies
+- Chokladchip Dough
+- Mint Chokladchip
+- Sälta Karamell
+- Strawbär Swirl
+- Raspbär Swirl
+- Swedish Choklad
+- Birthdäg Cake
+- Swedish Vanilj
+- Cookies and Kräm
 
 ## Few Disclaimers
 
@@ -53,10 +53,10 @@ Cookies and Kräm
 
 ## Untried / Unable to rank
 
-Key Lime Pie
-Swedish Pistasch
-Butter Pekan
-Cherry Choka-Fläka
-Strawbär Cheesecake
-Coffee Chokladchip
-Pumpkin Spice Swirl
+- Key Lime Pie
+- Swedish Pistasch
+- Butter Pekan
+- Cherry Choka-Fläka
+- Strawbär Cheesecake
+- Coffee Chokladchip
+- Pumpkin Spice Swirl
