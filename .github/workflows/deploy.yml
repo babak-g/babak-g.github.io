@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: babak-g.github.io
+      url: https://babak-g.github.io
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
