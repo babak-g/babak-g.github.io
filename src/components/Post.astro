@@ -1,0 +1,23 @@
+---
+import { formatDate } from "../lib/date";
+const { post, i } = Astro.props
+---
+
+<div class:list={["px-1", "py-4", { "text-right": i % 2 === 0 }, { "text-left": i % 2 !== 0 }]}>
+  <p class="mb-3 text-base text-yellow-300" transition:name={`pubDate-${post.url}`}>
+    {formatDate(new Date(post.pubDate), [{ month: "short" }, { year: "numeric" }])}
+  </p>
+  <h4 class="mb-3 font-bold text-lg md:text-2xl">{post.title}</h4>
+  <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+    {post.description}
+  </p>
+  {post.image && (
+    <img
+      src={post.image.thumb}
+      alt={post.image.alt}
+      transition:name={i === 0 ? 'hero' : ''}
+      // class:list={["mt-6", { "ml-auto": i % 2 === 0 }, { "mr-auto": i % 2 !== 0 }]}
+      // height="320"
+    />
+  )}
+</div>

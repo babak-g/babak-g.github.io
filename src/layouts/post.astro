@@ -1,0 +1,23 @@
+---
+import MainLayout from "./main.astro";
+import { formatDate } from "../lib/date";
+const { content } = Astro.props;
+import '../styles/post.css';
+---
+<MainLayout>
+  <article class="container mx-auto max-w-xl justify-center">
+    <h2>{content.title}</h2>
+    <p class="mb-3 text-primary">
+      {formatDate(new Date(content.pubDate), [{ month: "long" }, { year: "numeric" }])}
+    </p>
+    <summary class="italic my-8">
+      {content.description}
+    </summary>
+    {
+      content.image && (
+        <img src={content.image.url} alt={content.image.alt} transition:name={`image-${content.url}`} class={"my-8"} />
+      )
+    }
+    <slot />
+  </article>
+</MainLayout>

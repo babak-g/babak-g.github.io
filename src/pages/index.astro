@@ -1,101 +1,99 @@
 ---
-import { getCollection } from "astro:content";
-import PageLayout from "@/layouts/Base";
-import PostPreview from "@/components/blog/PostPreview";
-import SocialList from "@/components/SocialList";
-import { sortMDByDate } from "@/utils";
-
-const MAX_POSTS = 10;
-const allPosts = await getCollection("post");
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
-
-const cactusTech: Array<{ title: string; desc: string; href: string }> = [
-	{
-		title: "The Obesity Code",
-		desc: "Jason Fung, MD",
-		href: "https://www.amazon.com/Obesity-Code-Unlocking-Secrets-Weight/dp/1536682187",
-	},
-	{
-		title: "Why Startups Fail",
-		desc: "Tom Eisenmann",
-		href: "https://www.amazon.com/Why-Startups-Fail-Roadmap-Entrepreneurial/dp/0593137027",
-	},
-	{
-		title: "Nonviolent Communication",
-		desc: "Marshall B. Rosenberg",
-		href: "https://www.amazon.com/Nonviolent-Communication-Language-Life-Changing-Relationships/dp/189200528X",
-	},
-	{
-		title: "How to Win Friends & Influence People",
-		desc: "Dale Carnegie",
-		href: "https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034",
-	},
-	{
-		title: "Desigining Data-Intensive Applications",
-		desc: "Martin Kleppman",
-		href: "https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321",
-	},
-	{
-		title: "Atomic Habits",
-		desc: "James Clear",
-		href: "https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/1847941842",
-	},
-	{
-		title: "Crucial Conversations: Tools for Talking When Stakes Are High",
-		desc: "Joseph Grenny, Ron McMillan, Al Switzler, Kerry Patterson",
-		href: "https://www.amazon.com/Crucial-Conversations-Talking-Stakes-Second/dp/1469266822",
-	},
-	{
-		title: "Explain the Cloud Like I'm 10",
-		desc: "Todd Hoff",
-		href: "https://a.co/d/b67vYRi",
-	},
-	{
-		title: "The Pragmatic Programmer",
-		desc: "Andrew Hunt, David Thomas",
-		href: "https://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X",
-	},
-];
+import MainLayout from "../layouts/main.astro";
+import { formatDate } from "../lib/date";
+const allPosts = await Astro.glob("./posts/*.md");
+const sortedPosts = allPosts.sort((a, b) => {
+  return a.frontmatter.pubDate < b.frontmatter.pubDate ? 1 : -1;
+});
 ---
 
-<PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-6">me</h1>
-		<p class="mb-4">
-			software engineer based in los angeles, united states.
-		</p>
-		<SocialList />
-	</section>
-	<section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-xl">posts</h2>
-		<ul class="space-y-4 sm:space-y-2">
-			{
-				allPostsByDate.map((p) => (
-					<li class="flex flex-col gap-x-2 sm:flex-row">
-						<PostPreview post={p} />
-					</li>
-				))
-			}
-		</ul>
-	</section>
-	<section class="mt-16">
-		<h2 class="title mb-4 text-xl">books</h2>
-		<ul class="space-y-4 sm:space-y-2">
-			{
-				cactusTech.map(({ href, title, desc }) => (
-					<li>
-						<a
-							href={href}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="cactus-link inline-block"
-						>
-							{title}
-						</a>: 
-						<p class="inline-block sm:mt-2">{desc}</p>
-					</li>
-				))
-			}
-		</ul>
-	</section>
-</PageLayout>
+<style>
+  summary {
+    display: flex;
+  }
+</style>
+<MainLayout>
+  <div class="w-full flex justify-center items-center mb-4 gap-4">
+    <img
+      src="https://media.graphcms.com/output=format:jpg/resize=width:200,height:200/AVAb1jImQKWS7ZRB626M"
+      class="rounded-3xl"
+      alt="Petr Krejcik"
+      height="200"
+      width="200"
+    />
+    <div class="">
+      <h1 class="text-4xl mb-2">
+        Hi, I'm <span class="text-primary">Petr</span>.
+      </h1>
+      <p>I'm a developer and this is what I've done.</p>
+      <a href="https://www.linkedin.com/in/petrkrejcik" style="block" target="_blank">
+        <div class="w-4 h-4 mt-2">
+          <svg
+            class="text-gray-400 hover:text-blue-500 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+            ></path>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="container mx-auto flex justify-center">
+    <div class="ml-0 lg:w-2/3 sticky">
+      <div class="container mx-auto w-full h-full">
+        <div class="relative wrap overflow-hidden h-full">
+          <div class="border-2-2 border-primary absolute h-full border right-1/2"></div>
+          <div class="border-2-2 border-primary absolute h-full border left-1/2"></div>
+
+          {
+            sortedPosts.map((post, i) => (
+              <div
+                class:list={[
+                  "mb-8",
+                  "flex",
+                  "justify-between",
+                  "w-full",
+                  "items-center",
+                  // "hover:scale-105",
+                  "transition",
+                  { "flex-row-reverse": i % 2 === 0 },
+                ]}
+              >
+                <div class="order-1 w-5/12" />
+                <div
+                  class="order-1 border-2-2 border-primary w-1/12 border"
+                  style={{
+                    "margin-right": i % 2 === 0 ? "9%" : 0,
+                    "margin-left": i % 2 !== 0 ? "9%" : 0,
+                  }}
+                />
+                <a
+                  href={post.url}
+                  class="order-1 w-5/12 hover:bg-gray-900 transition-all duration-100 p-2 rounded-md block"
+                >
+                  <div class:list={["px-1", "py-4"]}>
+                    <h2 class="mb-3 text-3xl font-extrabold md:text-2xl text-white" >{post.frontmatter.title}</h2>
+                    <p class="mb-3 text-primary">
+                      {formatDate(new Date(post.frontmatter.pubDate), [{ month: "short" }, { year: "numeric" }])}
+                    </p>
+                    <summary>{post.frontmatter.description}</summary>
+                    {post.frontmatter.image && (
+                      <img
+                        src={post.frontmatter.image.thumb}
+                        alt={post.frontmatter.image.alt}
+                        transition:name={`image-${post.url}`}
+                      />
+                    )}
+                  </div>
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>
