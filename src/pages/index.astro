@@ -1,6 +1,8 @@
 ---
 import MainLayout from "../layouts/main.astro";
 import { formatDate } from "../lib/date";
+
+// Fetch & sort all posts by publication date (descending)
 const allPosts = await Astro.glob("./posts/*.md");
 const sortedPosts = allPosts.sort((a, b) => {
   return a.frontmatter.pubDate < b.frontmatter.pubDate ? 1 : -1;
@@ -8,43 +10,35 @@ const sortedPosts = allPosts.sort((a, b) => {
 ---
 
 <style>
+  /* Keep this if you'd like the summary displayed in a row: */
   summary {
     display: flex;
   }
+
+  /* Elegant, larger title font */
+  .title {
+    font-size: 7rem; /* Larger title */
+    font-family: 'Playfair Display', serif; /* Elegant font family */
+    font-weight: 700;
+    text-align: center;
+    color: #facc15; /* Nice golden color */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+  }
 </style>
+
 <MainLayout>
-  <div class="w-full flex justify-center items-center mb-4 gap-4">
-    <img
-      src="https://media.graphcms.com/output=format:jpg/resize=width:200,height:200/AVAb1jImQKWS7ZRB626M"
-      class="rounded-3xl"
-      alt="Petr Krejcik"
-      height="200"
-      width="200"
-    />
-    <div class="">
-      <h1 class="text-4xl mb-2">
-        Hi, I'm <span class="text-primary">Petr</span>.
-      </h1>
-      <p>I'm a developer and this is what I've done.</p>
-      <a href="https://www.linkedin.com/in/petrkrejcik" style="block" target="_blank">
-        <div class="w-4 h-4 mt-2">
-          <svg
-            class="text-gray-400 hover:text-blue-500 fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-          >
-            <path
-              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
-            ></path>
-          </svg>
-        </div>
-      </a>
-    </div>
+  <!-- Title Only -->
+  <div class="w-full flex justify-center items-center mb-8">
+    <h1 class="title">خانوادهٔ بابک</h1>
   </div>
+
+  <!-- Timeline Layout -->
   <div class="container mx-auto flex justify-center">
     <div class="ml-0 lg:w-2/3 sticky">
       <div class="container mx-auto w-full h-full">
         <div class="relative wrap overflow-hidden h-full">
+          <!-- Left and Right vertical lines -->
           <div class="border-2-2 border-primary absolute h-full border right-1/2"></div>
           <div class="border-2-2 border-primary absolute h-full border left-1/2"></div>
 
@@ -57,7 +51,6 @@ const sortedPosts = allPosts.sort((a, b) => {
                   "justify-between",
                   "w-full",
                   "items-center",
-                  // "hover:scale-105",
                   "transition",
                   { "flex-row-reverse": i % 2 === 0 },
                 ]}
@@ -75,10 +68,15 @@ const sortedPosts = allPosts.sort((a, b) => {
                   class="order-1 w-5/12 hover:bg-gray-900 transition-all duration-100 p-2 rounded-md block"
                 >
                   <div class:list={["px-1", "py-4"]}>
-                    <h2 class="mb-3 text-3xl font-extrabold md:text-2xl text-white" >{post.frontmatter.title}</h2>
-                    <p class="mb-3 text-primary">
-                      {formatDate(new Date(post.frontmatter.pubDate), [{ month: "short" }, { year: "numeric" }])}
-                    </p>
+                    <h2 class="mb-3 text-3xl font-extrabold md:text-2xl text-white">
+                      {post.frontmatter.title}
+                    </h2>
+                    {/* <p class="mb-3 text-primary">
+                      {formatDate(new Date(post.frontmatter.pubDate), [
+                        { month: "short" },
+                        { year: "numeric" },
+                      ])}
+                    </p> */}
                     <summary>{post.frontmatter.description}</summary>
                     {post.frontmatter.image && (
                       <img
