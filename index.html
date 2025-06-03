@@ -2,92 +2,659 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Lahjay — Learn Persian Your Way</title>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lahjay - Finally, a Persian Language Learning App</title>
     <style>
-      html,
-      body {
+      * {
         margin: 0;
         padding: 0;
-        font-family: "Times New Roman", serif;
-        font-size: 16pt;
-        line-height: 1.6;
-        background: #fff;
-        min-height: 100%;
+        box-sizing: border-box;
       }
-      header,
-      main,
-      footer {
+
+      :root {
+        --pomegranate: #c73e1d;
+        --pomegranate-light: #e85a42;
+        --pomegranate-dark: #a0311a;
+        --cream: #faf7f2;
+        --warm-white: #fefdfb;
+        --charcoal: #2d2d2d;
+        --soft-gray: #8a8a8a;
+        --accent-gold: #d4af37;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--cream) 0%,
+          var(--warm-white) 100%
+        );
+        color: var(--charcoal);
+        line-height: 1.7;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Logo and Navigation */
+      .nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(199, 62, 29, 0.2);
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--pomegranate);
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+      }
+
+      .nav-link {
+        color: var(--soft-gray);
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 0.95rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+
+      .nav-link:hover {
+        color: var(--pomegranate);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--pomegranate);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 160px 0 120px;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 100px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--pomegranate),
+          transparent
+        );
+        opacity: 0.3;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 200;
+        color: var(--charcoal);
+        margin-bottom: 30px;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+
+      .hero .accent {
+        color: var(--pomegranate);
+        font-weight: 400;
+        position: relative;
+      }
+
+      .hero .accent::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pomegranate),
+          transparent
+        );
+        opacity: 0.4;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: var(--soft-gray);
+        margin-bottom: 60px;
+        font-weight: 300;
+      }
+
+      /* Email Signup */
+      .signup-section {
+        background: var(--warm-white);
+        border-radius: 24px;
+        padding: 60px;
+        margin-bottom: 120px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05),
+          0 20px 40px rgba(199, 62, 29, 0.08);
+        border: 1px solid rgba(199, 62, 29, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .signup-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pomegranate),
+          transparent
+        );
+        opacity: 0.6;
+      }
+
+      .signup-section h2 {
+        font-size: 2rem;
+        font-weight: 300;
+        color: var(--charcoal);
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .signup-subtitle {
+        color: var(--soft-gray);
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 1rem;
+      }
+
+      .signup-form {
+        display: flex;
+        max-width: 480px;
+        margin: 0 auto;
+        gap: 0;
+        background: white;
+        border-radius: 50px;
+        padding: 6px;
+        box-shadow: 0 4px 20px rgba(199, 62, 29, 0.1);
+        border: 1px solid rgba(199, 62, 29, 0.15);
+      }
+
+      .email-input {
+        flex: 1;
+        padding: 18px 24px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        background: transparent;
+        color: var(--charcoal);
+        outline: none;
+        font-weight: 300;
+      }
+
+      .email-input::placeholder {
+        color: var(--soft-gray);
+      }
+
+      .signup-btn {
+        padding: 18px 32px;
+        background: var(--pomegranate);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+      }
+
+      .signup-btn:hover {
+        background: var(--pomegranate-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 25px rgba(199, 62, 29, 0.3);
+      }
+
+      .signup-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Loading state for button */
+      .signup-btn:disabled {
+        background: var(--soft-gray);
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Story Section */
+      .story-section {
+        margin-bottom: 120px;
+      }
+
+      .story-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .story-header h2 {
+        font-size: 2.5rem;
+        font-weight: 200;
+        color: var(--charcoal);
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .story-header .divider {
+        width: 60px;
+        height: 2px;
+        background: var(--pomegranate);
+        margin: 0 auto;
+        opacity: 0.7;
+      }
+
+      .story-grid {
+        display: grid;
+        gap: 40px;
         max-width: 900px;
         margin: 0 auto;
-        padding: 2rem 1rem;
       }
-      nav a {
-        margin-right: 1rem;
-        font-size: 14pt;
-        text-decoration: none;
-        color: #005ac2;
+
+      .story-item {
+        background: var(--warm-white);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid rgba(199, 62, 29, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
       }
-      nav a:hover {
-        text-decoration: underline;
+
+      .story-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 40px;
+        right: 40px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pomegranate),
+          transparent
+        );
+        opacity: 0.3;
       }
-      h1 {
+
+      .story-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(199, 62, 29, 0.12);
+      }
+
+      .story-item h3 {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--pomegranate);
+        margin-bottom: 20px;
+        letter-spacing: -0.01em;
+      }
+
+      .story-item p {
+        color: var(--soft-gray);
+        line-height: 1.8;
+        font-size: 1.05rem;
+      }
+
+      .persian-text {
+        font-family: "Tahoma", sans-serif;
+        color: var(--pomegranate);
+        font-weight: 600;
+        font-size: 1.1em;
+      }
+
+      /* Footer */
+      .footer {
         text-align: center;
-        margin: 0 0 0.7em;
+        padding: 80px 0 40px;
+        border-top: 1px solid rgba(199, 62, 29, 0.1);
+        margin-top: 120px;
       }
-      .cta {
-        display: inline-block;
-        margin: 2rem auto;
-        padding: 0.8rem 1.4rem;
-        border: 1px solid #005ac2;
-        border-radius: 6px;
+
+      .footer-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 30px;
+      }
+
+      .footer-link {
+        color: var(--soft-gray);
         text-decoration: none;
-        color: #005ac2;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
       }
-      .cta:hover {
-        background: #005ac2;
-        color: #fff;
+
+      .footer-link:hover {
+        color: var(--pomegranate);
       }
-      footer {
-        font-size: 12pt;
-        text-align: center;
-        border-top: 1px solid #ddd;
+
+      .footer-text {
+        color: var(--soft-gray);
+        font-size: 0.9rem;
+        font-weight: 300;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .nav-content {
+          padding: 15px 20px;
+        }
+
+        .nav-links {
+          gap: 20px;
+        }
+
+        .hero {
+          padding: 120px 0 80px;
+        }
+
+        .signup-section {
+          padding: 40px 30px;
+        }
+
+        .signup-form {
+          flex-direction: column;
+          gap: 15px;
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        .signup-btn {
+          border-radius: 12px;
+        }
+
+        .email-input {
+          border-radius: 12px;
+        }
+
+        .story-item {
+          padding: 30px 25px;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+
+      /* Subtle Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      .fade-in:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .fade-in:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .fade-in:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .fade-in:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Micro-interactions */
+      .story-item,
+      .signup-section {
+        cursor: default;
+      }
+
+      .signup-form:focus-within {
+        box-shadow: 0 8px 30px rgba(199, 62, 29, 0.2);
+        border-color: var(--pomegranate-light);
       }
     </style>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="support.html">Support</a>
-        <a href="privacy.html">Privacy Policy</a>
-      </nav>
-    </header>
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <div class="logo-container">
+          <img src="pomegranate.png" alt="Lahjay Logo" class="logo-img" />
+          <span class="logo-text">Lahjay</span>
+        </div>
+        <div class="nav-links">
+          <a href="support.html" class="nav-link">Support</a>
+          <a href="privacy.html" class="nav-link">Privacy</a>
+        </div>
+      </div>
+    </nav>
 
-    <main>
-      <h1>Lahjay</h1>
-      <p>
-        <strong>Lahjay</strong> is a self-guided Persian-language learning app
-        built around a smart Leitner flash-card system, offline vocab packs, and
-        bite-sized grammar hints.
-      </p>
+    <div class="container">
+      <section class="hero fade-in">
+        <h1>
+          Finally, a <span class="accent">Persian</span><br />Language Learning
+          App
+        </h1>
+        <p class="hero-subtitle">
+          Celebrating every accent, every story, every connection
+        </p>
+      </section>
 
-      <ul>
-        <li>Adaptive spaced-repetition decks (Beginner → Advanced)</li>
-        <li>Audio clips by native speakers</li>
-        <li>Token system to unlock challenges</li>
-        <li>100% offline — no account required</li>
-      </ul>
-
-      <!-- Replace with actual App Store badge / link when available -->
-      <p style="text-align: center">
-        <a class="cta" href="https://apps.apple.com/app/idXXXXXXXX"
-          >Download on the App Store</a
+      <section class="signup-section fade-in">
+        <h2>Join the Journey</h2>
+        <p class="signup-subtitle">
+          Be the first to experience Lahjay and receive exclusive beta access
+        </p>
+        <form
+          class="signup-form"
+          action="https://formspree.io/f/xldneqrr"
+          method="POST"
+          onsubmit="handleFormSubmit(event)"
         >
-        <!-- TODO: update ID -->
-      </p>
-    </main>
+          <input
+            type="email"
+            name="email"
+            class="email-input"
+            placeholder="Enter your email address"
+            required
+          />
+          <button type="submit" class="signup-btn">Get Beta Access</button>
+        </form>
+        <div
+          id="signup-message"
+          style="margin-top: 25px; text-align: center; font-weight: 500"
+        ></div>
+      </section>
 
-    <footer>© 2025 Lahjay Company • <a href="support.html">Support</a></footer>
+      <section class="story-section fade-in">
+        <div class="story-header">
+          <h2>The Journey of Identity</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="story-grid">
+          <div class="story-item fade-in">
+            <h3>Mission of the App</h3>
+            <p>
+              Lahjay is more than a language app—it's a community that
+              celebrates your unique accent and encourages authentic cultural
+              expression. Here, every learner feels valued and understood,
+              because language is about connection and belonging—not perfection.
+            </p>
+          </div>
+
+          <div class="story-item fade-in">
+            <h3>Meaning Behind "Lahjay"</h3>
+            <p>
+              The name Lahjay originates from the Farsi word
+              <span class="persian-text">"لهجه"</span> (lahjeh), meaning
+              "accent." While many might initially strive for accent-free
+              speech, Lahjay celebrates the truth that your accent reflects your
+              personal heritage and experiences—something beautiful to embrace
+              rather than change.
+            </p>
+          </div>
+
+          <div class="story-item fade-in">
+            <h3>Your Journey with Identity</h3>
+            <p>
+              Growing up between cultures often creates feelings of disconnect
+              or being an outsider. Perhaps you've struggled with visiting your
+              family's homeland or felt your accent wasn't "authentic enough"
+              within your community. Lahjay recognizes your experiences and
+              supports you in reconnecting with your roots, accent and all.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="support.html" class="footer-link">Support & Help</a>
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+        </div>
+        <p class="footer-text">
+          &copy; 2025 Lahjay. Celebrating every accent, every story, every
+          connection.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function handleFormSubmit(event) {
+        const messageDiv = document.getElementById("signup-message");
+        const submitBtn = event.target.querySelector(".signup-btn");
+        const emailInput = event.target.querySelector(".email-input");
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+        messageDiv.textContent = "";
+
+        // Let the form submit naturally to Formspree
+        // We'll show a thank you message after a brief delay
+        setTimeout(() => {
+          messageDiv.style.color = "var(--pomegranate)";
+          messageDiv.textContent =
+            "Thank you! We'll be in touch soon with beta access.";
+
+          // Reset form
+          emailInput.value = "";
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Get Beta Access";
+        }, 1000);
+      }
+
+      // Smooth scroll and intersection observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Initialize animations
+      window.addEventListener("load", function () {
+        const fadeElements = document.querySelectorAll(".fade-in");
+        fadeElements.forEach((el) => {
+          observer.observe(el);
+        });
+      });
+
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
