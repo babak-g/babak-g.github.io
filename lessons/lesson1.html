@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1: Persian Alphabet - Lahjay</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --pomegranate: #c73e1d;
+        --pomegranate-light: #e85a42;
+        --pomegranate-dark: #a0311a;
+        --cream: #faf7f2;
+        --warm-white: #fefdfb;
+        --charcoal: #2d2d2d;
+        --soft-gray: #8a8a8a;
+        --accent-gold: #d4af37;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--cream) 0%,
+          var(--warm-white) 100%
+        );
+        color: var(--charcoal);
+        line-height: 1.7;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Navigation */
+      .nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(199, 62, 29, 0.2);
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--pomegranate);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+
+      .back-home {
+        color: var(--soft-gray);
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-home:hover {
+        color: var(--pomegranate);
+      }
+
+      /* Main Content */
+      .lesson-content {
+        padding: 120px 0 80px;
+      }
+
+      .lesson-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .lesson-title {
+        font-size: 3.5rem;
+        font-weight: 200;
+        color: var(--charcoal);
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .lesson-subtitle {
+        font-size: 1.3rem;
+        color: var(--soft-gray);
+        font-weight: 300;
+      }
+
+      .lesson-section {
+        background: var(--warm-white);
+        border-radius: 24px;
+        padding: 50px;
+        margin-bottom: 40px;
+        border: 1px solid rgba(199, 62, 29, 0.1);
+        box-shadow: 0 4px 20px rgba(199, 62, 29, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lesson-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pomegranate),
+          transparent
+        );
+        opacity: 0.6;
+      }
+
+      .lesson-section h2 {
+        font-size: 2rem;
+        color: var(--pomegranate);
+        margin-bottom: 25px;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .lesson-section h3 {
+        font-size: 1.6rem;
+        color: var(--pomegranate);
+        margin-bottom: 25px;
+        font-weight: 500;
+      }
+
+      .lesson-section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: var(--charcoal);
+      }
+
+      /* Alphabet Grid */
+      .alphabet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .letter-card {
+        background: white;
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .letter-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(199, 62, 29, 0.05) 0%,
+          transparent 70%
+        );
+        transform: scale(0);
+        transition: transform 0.5s ease;
+      }
+
+      .letter-card:hover::before {
+        transform: scale(1);
+      }
+
+      .letter-card:hover {
+        border-color: var(--pomegranate);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(199, 62, 29, 0.2);
+      }
+
+      .persian-letter {
+        font-size: 4rem;
+        font-family: "Tahoma", "Noto Sans Arabic", sans-serif;
+        color: var(--pomegranate);
+        font-weight: bold;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .letter-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 8px;
+      }
+
+      .letter-pronunciation {
+        font-size: 1rem;
+        color: var(--soft-gray);
+        font-style: italic;
+        margin-bottom: 8px;
+      }
+
+      .letter-sound {
+        font-size: 0.9rem;
+        color: var(--pomegranate);
+        font-weight: 500;
+        background: rgba(199, 62, 29, 0.1);
+        padding: 4px 8px;
+        border-radius: 6px;
+        display: inline-block;
+      }
+
+      /* Combined Practice Section */
+      .practice-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 62, 29, 0.03),
+          rgba(199, 62, 29, 0.01)
+        );
+        border-radius: 24px;
+        padding: 50px;
+        margin: 40px 0;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .practice-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .practice-header h2 {
+        font-size: 2.2rem;
+        color: var(--pomegranate);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .practice-intro {
+        background: var(--pomegranate);
+        color: white;
+        padding: 20px 25px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      .fruit-practice-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .fruit-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fruit-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(199, 62, 29, 0.05) 0%,
+          transparent 70%
+        );
+        transform: scale(0);
+        transition: transform 0.5s ease;
+      }
+
+      .fruit-card:hover::before {
+        transform: scale(1);
+      }
+
+      .fruit-card:hover {
+        border-color: var(--pomegranate);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(199, 62, 29, 0.2);
+      }
+
+      .fruit-emoji {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .fruit-english {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 15px;
+        text-transform: capitalize;
+      }
+
+      .fruit-letters {
+        font-size: 1rem;
+        color: var(--soft-gray);
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+
+      .show-persian-btn {
+        background: var(--pomegranate);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .show-persian-btn:hover {
+        background: var(--pomegranate-dark);
+        transform: translateY(-2px);
+      }
+
+      .show-persian-btn:disabled {
+        background: var(--soft-gray);
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .persian-answer {
+        display: none;
+        background: rgba(199, 62, 29, 0.05);
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 15px;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .persian-answer.show {
+        display: block;
+        animation: fadeInUp 0.4s ease forwards;
+      }
+
+      .persian-word {
+        font-size: 3rem;
+        font-family: "Tahoma", "Noto Sans Arabic", sans-serif;
+        color: var(--pomegranate);
+        font-weight: bold;
+        margin-bottom: 15px;
+        direction: rtl;
+      }
+
+      .pronunciation-guide {
+        font-size: 1.1rem;
+        color: var(--charcoal);
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .letter-breakdown {
+        font-size: 0.95rem;
+        color: var(--soft-gray);
+        line-height: 1.6;
+      }
+
+      .letter-breakdown strong {
+        color: var(--pomegranate);
+      }
+
+      /* Basic Letter Practice */
+      .basic-practice {
+        background: rgba(199, 62, 29, 0.02);
+        border-radius: 16px;
+        padding: 30px;
+        margin: 30px 0;
+        border: 2px dashed rgba(199, 62, 29, 0.2);
+      }
+
+      .basic-practice h3 {
+        color: var(--pomegranate);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .practice-letter {
+        background: white;
+        border: 2px solid rgba(199, 62, 29, 0.2);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        font-size: 2.5rem;
+        font-family: "Tahoma", "Noto Sans Arabic", sans-serif;
+        color: var(--soft-gray);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .practice-letter:hover {
+        border-color: var(--pomegranate);
+        color: var(--pomegranate);
+        transform: scale(1.05);
+      }
+
+      /* Progress Section */
+      .progress-section {
+        background: var(--warm-white);
+        border-radius: 16px;
+        padding: 30px;
+        margin: 40px 0;
+        text-align: center;
+        border: 1px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .progress-bar {
+        background: rgba(199, 62, 29, 0.1);
+        height: 10px;
+        border-radius: 5px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        background: var(--pomegranate);
+        height: 100%;
+        width: 0%;
+        border-radius: 5px;
+        transition: width 0.3s ease;
+      }
+
+      .lesson-complete-btn {
+        background: var(--accent-gold);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+
+      .lesson-complete-btn:hover {
+        background: #b8941f;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .nav-content {
+          padding: 15px 20px;
+        }
+
+        .lesson-content {
+          padding: 100px 0 60px;
+        }
+
+        .lesson-title {
+          font-size: 2.5rem;
+        }
+
+        .lesson-section,
+        .practice-section {
+          padding: 30px 25px;
+        }
+
+        .alphabet-grid {
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 20px;
+        }
+
+        .fruit-practice-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .persian-letter {
+          font-size: 3rem;
+        }
+
+        .persian-word {
+          font-size: 2.5rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <div class="logo-container">
+          <img src="../pomegranate.png" alt="Lahjay Logo" class="logo-img" />
+          <a href="../index.html" class="logo-text">Lahjay</a>
+        </div>
+        <a href="../index.html" class="back-home">← Back to Home</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="lesson-content">
+        <div class="lesson-header fade-in-up">
+          <h1 class="lesson-title">درس یکم: الفبای فارسی</h1>
+          <h2 class="lesson-title" style="font-size: 2.2rem; margin-top: 10px">
+            Lesson 1: Persian Alphabet
+          </h2>
+          <p class="lesson-subtitle">
+            Learn the beautiful Persian script and master each letter
+          </p>
+        </div>
+
+        <div class="lesson-section fade-in-up">
+          <h2>Introduction to Persian Script</h2>
+          <p>
+            Welcome to your first lesson in Persian! The Persian alphabet
+            (الفبای فارسی) is one of the most beautiful writing systems in the
+            world. It consists of 32 letters and is written from right to left,
+            just like Arabic and Hebrew.
+          </p>
+          <p>
+            Each letter can have up to four different forms depending on its
+            position in a word:
+          </p>
+          <ul style="margin: 20px 0; padding-left: 30px">
+            <li><strong>Isolated:</strong> When the letter stands alone</li>
+            <li><strong>Initial:</strong> At the beginning of a word</li>
+            <li><strong>Medial:</strong> In the middle of a word</li>
+            <li><strong>Final:</strong> At the end of a word</li>
+          </ul>
+          <p>
+            Don't worry about memorizing all forms at once - we'll start with
+            the basic shapes and pronunciations!
+          </p>
+        </div>
+
+        <div class="lesson-section fade-in-up">
+          <h2>The Persian Alphabet - الفبای فارسی</h2>
+          <p>
+            Click on each letter to hear its pronunciation and learn its name:
+          </p>
+
+          <div class="alphabet-grid">
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ا</div>
+              <div class="letter-name">Alef</div>
+              <div class="letter-pronunciation">/ɑː/</div>
+              <div class="letter-sound">ah</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ب</div>
+              <div class="letter-name">Be</div>
+              <div class="letter-pronunciation">/b/</div>
+              <div class="letter-sound">b</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">پ</div>
+              <div class="letter-name">Pe</div>
+              <div class="letter-pronunciation">/p/</div>
+              <div class="letter-sound">p</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ت</div>
+              <div class="letter-name">Te</div>
+              <div class="letter-pronunciation">/t/</div>
+              <div class="letter-sound">t</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ث</div>
+              <div class="letter-name">Se</div>
+              <div class="letter-pronunciation">/s/</div>
+              <div class="letter-sound">s</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ج</div>
+              <div class="letter-name">Jim</div>
+              <div class="letter-pronunciation">/dʒ/</div>
+              <div class="letter-sound">j</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">چ</div>
+              <div class="letter-name">Che</div>
+              <div class="letter-pronunciation">/tʃ/</div>
+              <div class="letter-sound">ch</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ح</div>
+              <div class="letter-name">He</div>
+              <div class="letter-pronunciation">/h/</div>
+              <div class="letter-sound">h</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">خ</div>
+              <div class="letter-name">Khe</div>
+              <div class="letter-pronunciation">/x/</div>
+              <div class="letter-sound">kh</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">د</div>
+              <div class="letter-name">Dal</div>
+              <div class="letter-pronunciation">/d/</div>
+              <div class="letter-sound">d</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ذ</div>
+              <div class="letter-name">Zal</div>
+              <div class="letter-pronunciation">/z/</div>
+              <div class="letter-sound">z</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ر</div>
+              <div class="letter-name">Re</div>
+              <div class="letter-pronunciation">/r/</div>
+              <div class="letter-sound">r</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ز</div>
+              <div class="letter-name">Ze</div>
+              <div class="letter-pronunciation">/z/</div>
+              <div class="letter-sound">z</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ژ</div>
+              <div class="letter-name">Zhe</div>
+              <div class="letter-pronunciation">/ʒ/</div>
+              <div class="letter-sound">zh</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">س</div>
+              <div class="letter-name">Sin</div>
+              <div class="letter-pronunciation">/s/</div>
+              <div class="letter-sound">s</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ش</div>
+              <div class="letter-name">Shin</div>
+              <div class="letter-pronunciation">/ʃ/</div>
+              <div class="letter-sound">sh</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ص</div>
+              <div class="letter-name">Sad</div>
+              <div class="letter-pronunciation">/s/</div>
+              <div class="letter-sound">s</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ض</div>
+              <div class="letter-name">Zad</div>
+              <div class="letter-pronunciation">/z/</div>
+              <div class="letter-sound">z</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ط</div>
+              <div class="letter-name">Ta</div>
+              <div class="letter-pronunciation">/t/</div>
+              <div class="letter-sound">t</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ظ</div>
+              <div class="letter-name">Za</div>
+              <div class="letter-pronunciation">/z/</div>
+              <div class="letter-sound">z</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ع</div>
+              <div class="letter-name">Eyn</div>
+              <div class="letter-pronunciation">/ʔ/</div>
+              <div class="letter-sound">glottal</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">غ</div>
+              <div class="letter-name">Gheyn</div>
+              <div class="letter-pronunciation">/ɣ/</div>
+              <div class="letter-sound">gh</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ف</div>
+              <div class="letter-name">Fe</div>
+              <div class="letter-pronunciation">/f/</div>
+              <div class="letter-sound">f</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ق</div>
+              <div class="letter-name">Qaf</div>
+              <div class="letter-pronunciation">/q/</div>
+              <div class="letter-sound">q</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ک</div>
+              <div class="letter-name">Kaf</div>
+              <div class="letter-pronunciation">/k/</div>
+              <div class="letter-sound">k</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">گ</div>
+              <div class="letter-name">Gaf</div>
+              <div class="letter-pronunciation">/g/</div>
+              <div class="letter-sound">g</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ل</div>
+              <div class="letter-name">Lam</div>
+              <div class="letter-pronunciation">/l/</div>
+              <div class="letter-sound">l</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">م</div>
+              <div class="letter-name">Mim</div>
+              <div class="letter-pronunciation">/m/</div>
+              <div class="letter-sound">m</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ن</div>
+              <div class="letter-name">Nun</div>
+              <div class="letter-pronunciation">/n/</div>
+              <div class="letter-sound">n</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">و</div>
+              <div class="letter-name">Vav</div>
+              <div class="letter-pronunciation">/v/ or /u/</div>
+              <div class="letter-sound">v/u</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ه</div>
+              <div class="letter-name">He</div>
+              <div class="letter-pronunciation">/h/</div>
+              <div class="letter-sound">h</div>
+            </div>
+            <div class="letter-card" title="Click to practice">
+              <div class="persian-letter">ی</div>
+              <div class="letter-name">Ye</div>
+              <div class="letter-pronunciation">/j/ or /i/</div>
+              <div class="letter-sound">y/i</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="practice-section fade-in-up">
+          <div class="practice-header">
+            <h2>🍎 Writing Practice & Fruit Words</h2>
+            <p
+              style="
+                font-size: 1.1rem;
+                color: var(--soft-gray);
+                margin-bottom: 0;
+              "
+            >
+              Learn to combine letters by practicing with delicious fruit names!
+            </p>
+          </div>
+
+          <div class="practice-intro">
+            Master letter combinations by learning how to write fruit names in
+            Persian. Click "Show Answer" to see how individual letters combine
+            into beautiful words!
+          </div>
+
+          <div class="fruit-practice-grid">
+            <!-- Apple -->
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍎</span>
+              <div class="fruit-english">Apple</div>
+              <div class="fruit-letters">Connect: س + ی + ب</div>
+              <div
+                style="
+                  margin: 20px 0;
+                  padding: 15px;
+                  background: rgba(199, 62, 29, 0.05);
+                  border-radius: 8px;
+                  border: 2px dashed rgba(199, 62, 29, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--soft-gray);
+                    margin-bottom: 10px;
+                  "
+                >
+                  Write your answer:
+                </div>
+                <div
+                  style="
+                    min-height: 40px;
+                    background: white;
+                    border: 1px solid rgba(199, 62, 29, 0.2);
+                    border-radius: 6px;
+                    padding: 10px;
+                    font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    direction: rtl;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  font-size: 0.9rem;
+                  color: var(--soft-gray);
+                  font-style: italic;
+                "
+              >
+                Hint: Pronounced "seeb"
+              </div>
+            </div>
+
+            <!-- Banana -->
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍌</span>
+              <div class="fruit-english">Banana</div>
+              <div class="fruit-letters">Connect: م + و + ز</div>
+              <div
+                style="
+                  margin: 20px 0;
+                  padding: 15px;
+                  background: rgba(199, 62, 29, 0.05);
+                  border-radius: 8px;
+                  border: 2px dashed rgba(199, 62, 29, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--soft-gray);
+                    margin-bottom: 10px;
+                  "
+                >
+                  Write your answer:
+                </div>
+                <div
+                  style="
+                    min-height: 40px;
+                    background: white;
+                    border: 1px solid rgba(199, 62, 29, 0.2);
+                    border-radius: 6px;
+                    padding: 10px;
+                    font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    direction: rtl;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  font-size: 0.9rem;
+                  color: var(--soft-gray);
+                  font-style: italic;
+                "
+              >
+                Hint: Pronounced "mooz"
+              </div>
+            </div>
+
+            <!-- Orange -->
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍊</span>
+              <div class="fruit-english">Orange</div>
+              <div class="fruit-letters">Connect: پ + ر + ت + ق + ا + ل</div>
+              <div
+                style="
+                  margin: 20px 0;
+                  padding: 15px;
+                  background: rgba(199, 62, 29, 0.05);
+                  border-radius: 8px;
+                  border: 2px dashed rgba(199, 62, 29, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--soft-gray);
+                    margin-bottom: 10px;
+                  "
+                >
+                  Write your answer:
+                </div>
+                <div
+                  style="
+                    min-height: 40px;
+                    background: white;
+                    border: 1px solid rgba(199, 62, 29, 0.2);
+                    border-radius: 6px;
+                    padding: 10px;
+                    font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    direction: rtl;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  font-size: 0.9rem;
+                  color: var(--soft-gray);
+                  font-style: italic;
+                "
+              >
+                Hint: Pronounced "porteghal"
+              </div>
+            </div>
+
+            <!-- Grapes -->
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍇</span>
+              <div class="fruit-english">Grapes</div>
+              <div class="fruit-letters">Connect: ا + ن + گ + و + ر</div>
+              <div
+                style="
+                  margin: 20px 0;
+                  padding: 15px;
+                  background: rgba(199, 62, 29, 0.05);
+                  border-radius: 8px;
+                  border: 2px dashed rgba(199, 62, 29, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--soft-gray);
+                    margin-bottom: 10px;
+                  "
+                >
+                  Write your answer:
+                </div>
+                <div
+                  style="
+                    min-height: 40px;
+                    background: white;
+                    border: 1px solid rgba(199, 62, 29, 0.2);
+                    border-radius: 6px;
+                    padding: 10px;
+                    font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    direction: rtl;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  font-size: 0.9rem;
+                  color: var(--soft-gray);
+                  font-style: italic;
+                "
+              >
+                Hint: Pronounced "angoor"
+              </div>
+            </div>
+
+            <!-- Strawberry -->
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍓</span>
+              <div class="fruit-english">Strawberry</div>
+              <div class="fruit-letters">
+                Connect: ت + و + ت + ف + ر + ن + گ + ی
+              </div>
+              <div
+                style="
+                  margin: 20px 0;
+                  padding: 15px;
+                  background: rgba(199, 62, 29, 0.05);
+                  border-radius: 8px;
+                  border: 2px dashed rgba(199, 62, 29, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--soft-gray);
+                    margin-bottom: 10px;
+                  "
+                >
+                  Write your answer:
+                </div>
+                <div
+                  style="
+                    min-height: 40px;
+                    background: white;
+                    border: 1px solid rgba(199, 62, 29, 0.2);
+                    border-radius: 6px;
+                    padding: 10px;
+                    font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    direction: rtl;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  font-size: 0.9rem;
+                  color: var(--soft-gray);
+                  font-style: italic;
+                "
+              >
+                Hint: Pronounced "toot farangi"
+              </div>
+            </div>
+
+            <!-- Cherry -->
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍑</span>
+              <div class="fruit-english">Cherry</div>
+              <div class="fruit-letters">Connect: گ + ی + ل + ا + س</div>
+              <div
+                style="
+                  margin: 20px 0;
+                  padding: 15px;
+                  background: rgba(199, 62, 29, 0.05);
+                  border-radius: 8px;
+                  border: 2px dashed rgba(199, 62, 29, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    color: var(--soft-gray);
+                    margin-bottom: 10px;
+                  "
+                >
+                  Write your answer:
+                </div>
+                <div
+                  style="
+                    min-height: 40px;
+                    background: white;
+                    border: 1px solid rgba(199, 62, 29, 0.2);
+                    border-radius: 6px;
+                    padding: 10px;
+                    font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    direction: rtl;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  font-size: 0.9rem;
+                  color: var(--soft-gray);
+                  font-style: italic;
+                "
+              >
+                Hint: Pronounced "gilas"
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Answer Key Section -->
+        <div class="lesson-section fade-in-up">
+          <h2>📝 Answer Key</h2>
+          <p
+            style="
+              text-align: center;
+              margin-bottom: 30px;
+              color: var(--soft-gray);
+              font-style: italic;
+            "
+          >
+            Check your answers below:
+          </p>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 20px;
+            "
+          >
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                border: 2px solid rgba(199, 62, 29, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 15px;
+                "
+              >
+                <span style="font-size: 1.5rem">🍎</span>
+                <strong>Apple</strong>
+              </div>
+              <div
+                style="
+                  font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                  font-size: 2rem;
+                  color: var(--pomegranate);
+                  direction: rtl;
+                  text-align: center;
+                  margin: 10px 0;
+                "
+              >
+                سیب
+              </div>
+              <div style="font-size: 0.9rem; color: var(--soft-gray)">
+                Pronunciation: "seeb"
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                border: 2px solid rgba(199, 62, 29, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 15px;
+                "
+              >
+                <span style="font-size: 1.5rem">🍌</span>
+                <strong>Banana</strong>
+              </div>
+              <div
+                style="
+                  font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                  font-size: 2rem;
+                  color: var(--pomegranate);
+                  direction: rtl;
+                  text-align: center;
+                  margin: 10px 0;
+                "
+              >
+                موز
+              </div>
+              <div style="font-size: 0.9rem; color: var(--soft-gray)">
+                Pronunciation: "mooz"
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                border: 2px solid rgba(199, 62, 29, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 15px;
+                "
+              >
+                <span style="font-size: 1.5rem">🍊</span>
+                <strong>Orange</strong>
+              </div>
+              <div
+                style="
+                  font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                  font-size: 2rem;
+                  color: var(--pomegranate);
+                  direction: rtl;
+                  text-align: center;
+                  margin: 10px 0;
+                "
+              >
+                پرتقال
+              </div>
+              <div style="font-size: 0.9rem; color: var(--soft-gray)">
+                Pronunciation: "porteghal"
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                border: 2px solid rgba(199, 62, 29, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 15px;
+                "
+              >
+                <span style="font-size: 1.5rem">🍇</span>
+                <strong>Grapes</strong>
+              </div>
+              <div
+                style="
+                  font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                  font-size: 2rem;
+                  color: var(--pomegranate);
+                  direction: rtl;
+                  text-align: center;
+                  margin: 10px 0;
+                "
+              >
+                انگور
+              </div>
+              <div style="font-size: 0.9rem; color: var(--soft-gray)">
+                Pronunciation: "angoor"
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                border: 2px solid rgba(199, 62, 29, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 15px;
+                "
+              >
+                <span style="font-size: 1.5rem">🍓</span>
+                <strong>Strawberry</strong>
+              </div>
+              <div
+                style="
+                  font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                  font-size: 2rem;
+                  color: var(--pomegranate);
+                  direction: rtl;
+                  text-align: center;
+                  margin: 10px 0;
+                "
+              >
+                توت فرنگی
+              </div>
+              <div style="font-size: 0.9rem; color: var(--soft-gray)">
+                Pronunciation: "toot farangi"
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                border: 2px solid rgba(199, 62, 29, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 15px;
+                "
+              >
+                <span style="font-size: 1.5rem">🍑</span>
+                <strong>Cherry</strong>
+              </div>
+              <div
+                style="
+                  font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif;
+                  font-size: 2rem;
+                  color: var(--pomegranate);
+                  direction: rtl;
+                  text-align: center;
+                  margin: 10px 0;
+                "
+              >
+                گیلاس
+              </div>
+              <div style="font-size: 0.9rem; color: var(--soft-gray)">
+                Pronunciation: "gilas"
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- closes container -->
+    </div>
+    <!-- closes lesson-content -->
+  </body>
+</html>
