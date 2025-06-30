@@ -310,6 +310,23 @@
         color: var(--soft-gray);
         font-size: 0.9rem;
         font-weight: 300;
+        margin-bottom: 20px;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+      .footer-link {
+        color: var(--soft-gray);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 300;
+        transition: 0.3s;
+      }
+      .footer-link:hover {
+        color: var(--pomegranate);
       }
 
       /* RESPONSIVE */
@@ -338,6 +355,9 @@
         .signup-btn,
         .email-input {
           border-radius: 12px;
+        }
+        .footer-links {
+          gap: 20px;
         }
       }
     </style>
@@ -417,6 +437,10 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
+        <div class="footer-links">
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="support.html" class="footer-link">Support</a>
+        </div>
         <p class="footer-text">© 2025 Lahjay. All rights reserved.</p>
       </div>
     </footer>
