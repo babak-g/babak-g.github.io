@@ -299,78 +299,6 @@
         transform: none;
       }
 
-      /* STORY */
-      .story-section {
-        margin-bottom: 120px;
-      }
-      .story-header {
-        text-align: center;
-        margin-bottom: 80px;
-      }
-      .story-header h2 {
-        font-size: 2.5rem;
-        font-weight: 200;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-      }
-      .divider {
-        width: 60px;
-        height: 2px;
-        background: var(--pomegranate);
-        margin: 0 auto;
-        opacity: 0.7;
-      }
-      .story-grid {
-        display: grid;
-        gap: 40px;
-        max-width: 900px;
-        margin: 0 auto;
-      }
-      .story-item {
-        background: var(--warm-white);
-        border-radius: 16px;
-        padding: 40px;
-        border: 1px solid rgba(199, 62, 29, 0.08);
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-      }
-      .story-item::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 40px;
-        right: 40px;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--pomegranate),
-          transparent
-        );
-        opacity: 0.3;
-      }
-      .story-item:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(199, 62, 29, 0.12);
-      }
-      .story-item h3 {
-        font-size: 1.3rem;
-        font-weight: 500;
-        color: var(--pomegranate);
-        margin-bottom: 20px;
-      }
-      .story-item p {
-        color: var(--soft-gray);
-        line-height: 1.8;
-        font-size: 1.05rem;
-      }
-      .persian-text {
-        font-family: "Tahoma", sans-serif;
-        color: var(--pomegranate);
-        font-weight: 600;
-        font-size: 1.1em;
-      }
-
       /* FOOTER */
       .footer {
         text-align: center;
@@ -410,9 +338,6 @@
         .signup-btn,
         .email-input {
           border-radius: 12px;
-        }
-        .story-item {
-          padding: 30px 25px;
         }
       }
     </style>
@@ -487,47 +412,6 @@
           style="margin-top: 25px; text-align: center; font-weight: 500"
         ></div>
       </section>
-
-      <!-- Story -->
-      <section class="story-section">
-        <div class="story-header">
-          <h2>The Journey of Identity</h2>
-          <div class="divider"></div>
-        </div>
-
-        <div class="story-grid">
-          <div class="story-item">
-            <h3>The Mission Behind Lahjay</h3>
-            <p>
-              Lahjay celebrates your unique accent and the beauty of authentic
-              cultural expression. Our goal is simply to help everyone
-              interested in learning the beautiful language of Persian.
-            </p>
-          </div>
-
-          <div class="story-item">
-            <h3>The Story Behind the Name “Lahjay”</h3>
-            <p>
-              “Lahjay” is inspired by the Farsi word
-              <span class="persian-text">لهجه</span> (lahjeh), meaning “accent.”
-              While many people aim for accent-free speech, we proudly celebrate
-              your accent as a reflection of your personal heritage and
-              experiences. Your accent isn’t something to be changed—it’s
-              something beautiful, uniquely yours, and worth embracing.
-            </p>
-          </div>
-
-          <div class="story-item">
-            <h3>Your Identity Journey with Lahjay</h3>
-            <p>
-              Navigating life between cultures often brings feelings of
-              disconnection or uncertainty. Lahjay acknowledges these
-              experiences, offering a supportive space for you to reconnect
-              deeply with your roots—accent and all.
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
 
     <!-- Footer -->
@@ -551,7 +435,7 @@
         })
           .then(() => {
             document.getElementById("signup-message").textContent =
-              "Thank you! We’ll be in touch.";
+              "Thank you! We'll be in touch.";
             form.reset();
           })
           .catch(() => {
