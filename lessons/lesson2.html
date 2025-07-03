@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2: Colors and Fruits - Lahjay</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --pomegranate: #c73e1d;
+        --pomegranate-light: #e85a42;
+        --pomegranate-dark: #a0311a;
+        --cream: #faf7f2;
+        --warm-white: #fefdfb;
+        --charcoal: #2d2d2d;
+        --soft-gray: #8a8a8a;
+        --accent-gold: #d4af37;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--cream) 0%,
+          var(--warm-white) 100%
+        );
+        color: var(--charcoal);
+        line-height: 1.7;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Navigation */
+      .nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(199, 62, 29, 0.2);
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--pomegranate);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+
+      .back-home {
+        color: var(--soft-gray);
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-home:hover {
+        color: var(--pomegranate);
+      }
+
+      /* Main Content */
+      .lesson-content {
+        padding: 120px 0 80px;
+      }
+
+      .lesson-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .lesson-title {
+        font-size: 3.5rem;
+        font-weight: 200;
+        color: var(--charcoal);
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .lesson-subtitle {
+        font-size: 1.3rem;
+        color: var(--soft-gray);
+        font-weight: 300;
+      }
+
+      .lesson-section {
+        background: var(--warm-white);
+        border-radius: 24px;
+        padding: 50px;
+        margin-bottom: 40px;
+        border: 1px solid rgba(199, 62, 29, 0.1);
+        box-shadow: 0 4px 20px rgba(199, 62, 29, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lesson-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pomegranate),
+          transparent
+        );
+        opacity: 0.6;
+      }
+
+      .lesson-section h2 {
+        font-size: 2rem;
+        color: var(--pomegranate);
+        margin-bottom: 25px;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .lesson-section h3 {
+        font-size: 1.6rem;
+        color: var(--pomegranate);
+        margin-bottom: 25px;
+        font-weight: 500;
+      }
+
+      .lesson-section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: var(--charcoal);
+      }
+
+      /* Colors Grid */
+      .colors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .color-card {
+        background: white;
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .color-card:hover {
+        border-color: var(--pomegranate);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(199, 62, 29, 0.2);
+      }
+
+      .color-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        border: 3px solid rgba(199, 62, 29, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .color-card:hover .color-circle {
+        border-color: var(--pomegranate);
+        transform: scale(1.05);
+      }
+
+      .color-name-persian {
+        font-size: 2.5rem;
+        font-family: "Tahoma", "Noto Sans Arabic", sans-serif;
+        color: var(--pomegranate);
+        font-weight: bold;
+        margin-bottom: 15px;
+        direction: rtl;
+      }
+
+      .color-name-english {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 8px;
+        text-transform: capitalize;
+      }
+
+      .color-pronunciation {
+        font-size: 1rem;
+        color: var(--soft-gray);
+        font-style: italic;
+      }
+
+      /* Fruits Grid */
+      .fruits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .fruit-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fruit-card:hover {
+        border-color: var(--pomegranate);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(199, 62, 29, 0.2);
+      }
+
+      .fruit-emoji {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .fruit-name-persian {
+        font-size: 2.5rem;
+        font-family: "Tahoma", "Noto Sans Arabic", sans-serif;
+        color: var(--pomegranate);
+        font-weight: bold;
+        margin-bottom: 15px;
+        direction: rtl;
+      }
+
+      .fruit-name-english {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 10px;
+        text-transform: capitalize;
+      }
+
+      .fruit-pronunciation {
+        font-size: 1rem;
+        color: var(--soft-gray);
+        font-style: italic;
+        margin-bottom: 15px;
+      }
+
+      .fruit-description {
+        font-size: 0.9rem;
+        color: var(--charcoal);
+        line-height: 1.6;
+        padding: 15px;
+        background: rgba(199, 62, 29, 0.05);
+        border-radius: 8px;
+        margin-top: 10px;
+      }
+
+      /* Practice Section */
+      .practice-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 62, 29, 0.03),
+          rgba(199, 62, 29, 0.01)
+        );
+        border-radius: 24px;
+        padding: 50px;
+        margin: 40px 0;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .practice-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .practice-header h2 {
+        font-size: 2.2rem;
+        color: var(--pomegranate);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .practice-intro {
+        background: var(--pomegranate);
+        color: white;
+        padding: 20px 25px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      .matching-game {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 30px 0;
+      }
+
+      .matching-column {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .matching-column h3 {
+        color: var(--pomegranate);
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 1.4rem;
+      }
+
+      .matching-item {
+        background: rgba(199, 62, 29, 0.05);
+        border: 2px solid rgba(199, 62, 29, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .matching-item:hover {
+        border-color: var(--pomegranate);
+        background: rgba(199, 62, 29, 0.1);
+      }
+
+      .matching-item.selected {
+        border-color: var(--pomegranate);
+        background: var(--pomegranate);
+        color: white;
+      }
+
+      .matching-item.correct {
+        border-color: #4caf50;
+        background: #4caf50;
+        color: white;
+      }
+
+      .persian-text {
+        font-family: "Tahoma", "Noto Sans Arabic", sans-serif;
+        font-size: 1.8rem;
+        font-weight: bold;
+        direction: rtl;
+      }
+
+      .english-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .quiz-section {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        margin: 30px 0;
+        border: 2px solid rgba(199, 62, 29, 0.1);
+      }
+
+      .quiz-question {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        text-align: center;
+        color: var(--charcoal);
+      }
+
+      .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .quiz-option {
+        background: rgba(199, 62, 29, 0.05);
+        border: 2px solid rgba(199, 62, 29, 0.1);
+        border-radius: 12px;
+        padding: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .quiz-option:hover {
+        border-color: var(--pomegranate);
+        background: rgba(199, 62, 29, 0.1);
+      }
+
+      .quiz-option.selected {
+        border-color: var(--pomegranate);
+        background: var(--pomegranate);
+        color: white;
+      }
+
+      .quiz-option.correct {
+        border-color: #4caf50;
+        background: #4caf50;
+        color: white;
+      }
+
+      .quiz-option.incorrect {
+        border-color: #f44336;
+        background: #f44336;
+        color: white;
+      }
+
+      .check-answer-btn {
+        background: var(--pomegranate);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: block;
+        margin: 20px auto;
+      }
+
+      .check-answer-btn:hover {
+        background: var(--pomegranate-dark);
+        transform: translateY(-2px);
+      }
+
+      .check-answer-btn:disabled {
+        background: var(--soft-gray);
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .nav-content {
+          padding: 15px 20px;
+        }
+
+        .lesson-content {
+          padding: 100px 0 60px;
+        }
+
+        .lesson-title {
+          font-size: 2.5rem;
+        }
+
+        .lesson-section,
+        .practice-section {
+          padding: 30px 25px;
+        }
+
+        .colors-grid,
+        .fruits-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .matching-game {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .quiz-options {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .bounce {
+        animation: bounce 0.6s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <div class="logo-container">
+          <img src="../pomegranate.png" alt="Lahjay Logo" class="logo-img" />
+          <a href="../index.html" class="logo-text">Lahjay</a>
+        </div>
+        <a href="../index.html" class="back-home">← Back to Home</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="lesson-content">
+        <div class="lesson-header fade-in-up">
+          <h1 class="lesson-title">درس دوم: رنگ‌ها و میوه‌ها</h1>
+          <h2 class="lesson-title" style="font-size: 2.2rem; margin-top: 10px">
+            Lesson 2: Colors and Fruits
+          </h2>
+          <p class="lesson-subtitle">
+            Discover the vibrant world of Persian colors and delicious fruits
+          </p>
+        </div>
+
+        <div class="lesson-section fade-in-up">
+          <h2>Building Your Vocabulary</h2>
+          <p>
+            Now that you know the Persian alphabet, let's expand your vocabulary with everyday words! 
+            Colors and fruits are fundamental vocabulary that you'll use constantly in Persian conversation.
+          </p>
+          <p>
+            In this lesson, you'll learn how to identify and pronounce common colors and fruits in Persian. 
+            Notice how the letters from Lesson 1 combine to create these beautiful words!
+          </p>
+        </div>
+
+        <div class="lesson-section fade-in-up">
+          <h2>🎨 Colors - رنگ‌ها (Rang-ha)</h2>
+          <p>
+            Master these essential colors in Persian. Click on each color to practice the pronunciation:
+          </p>
+
+          <div class="colors-grid">
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #ff0000;"></div>
+              <div class="color-name-persian">قرمز</div>
+              <div class="color-name-english">Red</div>
+              <div class="color-pronunciation">ghermez</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #0000ff;"></div>
+              <div class="color-name-persian">آبی</div>
+              <div class="color-name-english">Blue</div>
+              <div class="color-pronunciation">abi</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #008000;"></div>
+              <div class="color-name-persian">سبز</div>
+              <div class="color-name-english">Green</div>
+              <div class="color-pronunciation">sabz</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #ffff00;"></div>
+              <div class="color-name-persian">زرد</div>
+              <div class="color-name-english">Yellow</div>
+              <div class="color-pronunciation">zard</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #ffa500;"></div>
+              <div class="color-name-persian">نارنجی</div>
+              <div class="color-name-english">Orange</div>
+              <div class="color-pronunciation">narenji</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #800080;"></div>
+              <div class="color-name-persian">بنفش</div>
+              <div class="color-name-english">Purple</div>
+              <div class="color-pronunciation">banafsh</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #ffc0cb;"></div>
+              <div class="color-name-persian">صورتی</div>
+              <div class="color-name-english">Pink</div>
+              <div class="color-pronunciation">soorati</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #000000;"></div>
+              <div class="color-name-persian">سیاه</div>
+              <div class="color-name-english">Black</div>
+              <div class="color-pronunciation">siah</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #ffffff; border-color: #ccc;"></div>
+              <div class="color-name-persian">سفید</div>
+              <div class="color-name-english">White</div>
+              <div class="color-pronunciation">sefid</div>
+            </div>
+
+            <div class="color-card" title="Click to practice">
+              <div class="color-circle" style="background-color: #a0522d;"></div>
+              <div class="color-name-persian">قهوه‌ای</div>
+              <div class="color-name-english">Brown</div>
+              <div class="color-pronunciation">ghahve-i</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-section fade-in-up">
+          <h2>🍎 Fruits - میوه‌ها (Mive-ha)</h2>
+          <p>
+            Explore these delicious fruits and their Persian names. Many of these you practiced writing in Lesson 1!
+          </p>
+
+          <div class="fruits-grid">
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍎</span>
+              <div class="fruit-name-persian">سیب</div>
+              <div class="fruit-name-english">Apple</div>
+              <div class="fruit-pronunciation">seeb</div>
+              <div class="fruit-description">
+                A crisp, sweet fruit that's perfect for snacking. Often red, green, or yellow in color.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍌</span>
+              <div class="fruit-name-persian">موز</div>
+              <div class="fruit-name-english">Banana</div>
+              <div class="fruit-pronunciation">mooz</div>
+              <div class="fruit-description">
+                A tropical fruit with soft, sweet flesh. Yellow when ripe and packed with potassium.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍊</span>
+              <div class="fruit-name-persian">پرتقال</div>
+              <div class="fruit-name-english">Orange</div>
+              <div class="fruit-pronunciation">porteghal</div>
+              <div class="fruit-description">
+                A citrus fruit rich in vitamin C. Named after the country Portugal in Persian.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍇</span>
+              <div class="fruit-name-persian">انگور</div>
+              <div class="fruit-name-english">Grapes</div>
+              <div class="fruit-pronunciation">angoor</div>
+              <div class="fruit-description">
+                Small, round fruits that grow in clusters. Can be green, red, or purple.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍓</span>
+              <div class="fruit-name-persian">توت فرنگی</div>
+              <div class="fruit-name-english">Strawberry</div>
+              <div class="fruit-pronunciation">toot farangi</div>
+              <div class="fruit-description">
+                Literally means "French berry" in Persian. Sweet, red, and heart-shaped.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍑</span>
+              <div class="fruit-name-persian">گیلاس</div>
+              <div class="fruit-name-english">Cherry</div>
+              <div class="fruit-pronunciation">gilas</div>
+              <div class="fruit-description">
+                Small, round stone fruits that are typically red or dark red when ripe.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🍉</span>
+              <div class="fruit-name-persian">هندوانه</div>
+              <div class="fruit-name-english">Watermelon</div>
+              <div class="fruit-pronunciation">hendoovane</div>
+              <div class="fruit-description">
+                A large, refreshing fruit perfect for hot summer days. Green outside, red inside.
+              </div>
+            </div>
+
+            <div class="fruit-card">
+              <span class="fruit-emoji">🥭</span>
+              <div class="fruit-name-persian">انبه</div>
+              <div class="fruit-name-english">Mango</div>
+              <div class="fruit-pronunciation">anbe</div>
+              <div class="fruit-description">
+                A tropical fruit with sweet, creamy flesh. Yellow-orange when ripe.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="practice-section fade-in-up">
+          <div class="practice-header">
+            <h2>🎯 Practice Activities</h2>
+            <p style="font-size: 1.1rem; color: var(--soft-gray); margin-bottom: 0;">
+              Test your knowledge with these interactive exercises!
+            </p>
+          </div>
+
+          <div class="practice-intro">
+            Ready to practice? Try these activities to reinforce your learning of colors and fruits in Persian!
+          </div>
+
+          <!-- Color-Fruit Matching Game -->
+          <div class="quiz-section">
+            <h3 style="color: var(--pomegranate); text-align: center; margin-bottom: 20px;">
+              🎨 Color-Fruit Matching
+            </h3>
+            <div class="quiz-question">
+              Match the Persian color with the correct fruit that typically has that color:
+            </div>
+            
+            <div class="matching-game">
+              <div class="matching-column">
+                <h3>Colors (رنگ‌ها)</h3>
+                <div class="matching-item" data-color="red">
+                  <div class="persian-text">قرمز</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Red</div>
+                </div>
+                <div class="matching-item" data-color="yellow">
+                  <div class="persian-text">زرد</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Yellow</div>
+                </div>
+                <div class="matching-item" data-color="orange">
+                  <div class="persian-text">نارنجی</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Orange</div>
+                </div>
+                <div class="matching-item" data-color="green">
+                  <div class="persian-text">سبز</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Green</div>
+                </div>
+              </div>
+              
+              <div class="matching-column">
+                <h3>Fruits (میوه‌ها)</h3>
+                <div class="matching-item" data-fruit="apple">
+                  <div style="font-size: 2rem; margin-bottom: 10px;">🍎</div>
+                  <div class="persian-text">سیب</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Apple</div>
+                </div>
+                <div class="matching-item" data-fruit="banana">
+                  <div style="font-size: 2rem; margin-bottom: 10px;">🍌</div>
+                  <div class="persian-text">موز</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Banana</div>
+                </div>
+                <div class="matching-item" data-fruit="orange">
+                  <div style="font-size: 2rem; margin-bottom: 10px;">🍊</div>
+                  <div class="persian-text">پرتقال</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Orange</div>
+                </div>
+                <div class="matching-item" data-fruit="grapes">
+                  <div style="font-size: 2rem; margin-bottom: 10px;">🍇</div>
+                  <div class="persian-text">انگور</div>
+                  <div style="font-size: 0.9rem; color: var(--soft-gray);">Grapes</div>
+                </div>
+              </div>
+            </div>
+            
+            <button class="check-answer-btn" onclick="checkMatching()">Check Answers</button>
+            <div id="matching-result" style="text-align: center; margin-top: 20px; font-weight: 500;"></div>
+          </div>
+
+          <!-- Pronunciation Quiz -->
+          <div class="quiz-section">
+            <h3 style="color: var(--pomegranate); text-align: center; margin-bottom: 20px;">
+              🔤 Pronunciation Quiz
+            </h3>
+            <div class="quiz-question" id="pronunciation-question">
+              How do you pronounce this Persian word: <span style="font-family: 'Tahoma', 'Noto Sans Arabic', sans-serif; font-size: 1.8rem; color: var(--pomegranate); font-weight: bold;">سیب</span>
+            </div>
+            
+            <div class="quiz-options">
+              <div class="quiz-option
